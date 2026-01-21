@@ -150,3 +150,32 @@ int main() {
 ```
 - Output
 - 2   4
+## Q9
+```cpp
+#include <iostream>
+using namespace std;
+
+// Function to swap two numbers using pointers
+void swap(int *a, int *b) {
+    int temp = *a;  // store value of a
+    *a = *b;        // assign value of b to a
+    *b = temp;      // assign stored value to b
+}
+
+int main() {
+    int x = 10, y = 20;
+
+    cout << "Before swapping: x = " << x << ", y = " << y << endl;
+
+    // Call swap function with addresses of x and y
+    swap(&x, &y);
+
+    cout << "After swapping: x = " << x << ", y = " << y << endl;
+
+    return 0;
+}
+```
+- Output
+- Before swapping: x = 10, y = 20
+  After swapping: x = 20, y = 10
+
