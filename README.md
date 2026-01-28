@@ -314,15 +314,15 @@ int main() {
     return 0;
 }
 ```
--Output
--Enter number of elements: 5
--Enter array elements:
--2
--3
--5
--6
--7
--Sum of array elements = 23
+- Output
+- Enter number of elements: 5
+- Enter array elements:
+- 2
+- 3 
+- 5
+- 6
+- 7
+- Sum of array elements = 23
 ## Q16
 ```cpp
 #include <iostream>
@@ -354,16 +354,16 @@ int main() {
     return 0;
 }
 ```
--Output
--Enter number of elements: 5
--Enter elements of first array:
--2
--3
--4
--6
--7
--Elements of second array:
--2 3 4 6 7 
+- Output
+- Enter number of elements: 5
+- Enter elements of first array:
+- 2
+- 3
+- 4
+- 6
+- 7
+- Elements of second array:
+- 2 3 4 6 7 
 ## Q17
 ```cpp
 #include <iostream>
@@ -392,16 +392,16 @@ int main() {
     return 0;
 }
 ```
--Output
--Enter number of elements: 5
--Enter array elements:
--3
--5
--7
--4
--7
--Elements at even index positions:
--3 7 7 
+- Output
+- Enter number of elements: 5
+- Enter array elements:
+- 3
+- 5
+- 7
+- 4
+- 7
+- Elements at even index positions:
+- 3 7 7 
 ## Q18
 ```cpp
 #include <iostream>
@@ -433,14 +433,14 @@ int main() {
     return 0;
 }
 ```
--Output
--Enter number of rows and columns: 3 3
--Enter matrix elements:
--2 27 3 3 5 7 7 8 8 
--Matrix is:
--2 27 3 
--3 5 7 
--7 8 8
+- Output
+- Enter number of rows and columns: 3 3
+- Enter matrix elements:
+- 2 27 3 3 5 7 7 8 8 
+- Matrix is:
+- 2 27 3 
+- 3 5 7 
+- 7 8 8
 ## Q19
 ```cpp
 #include <iostream>
@@ -471,12 +471,12 @@ int main() {
     return 0;
 }
 ```
--Output
--Enter number of rows and columns: 3 3
--Enter matrix elements:
--1 3 4 6 75 76 5 4 67
--Matrix elements in row-wise order:
--1 3 4 6 75 76 5 4 67 
+- Output
+- Enter number of rows and columns: 3 3
+- Enter matrix elements:
+- 1 3 4 6 75 76 5 4 67
+- Matrix elements in row-wise order:
+- 1 3 4 6 75 76 5 4 67 
 ## Q20
 ```cpp
 #include <iostream>
@@ -507,11 +507,11 @@ int main() {
     return 0;
 }
 ```
--Output
--Enter number of rows and columns: 3 3
--Enter matrix elements:
--2 3 5 6 3 5 3 5 4
--Matrix elements in column-wise order:
--2 6 3 3 3 5 5 5 4 
+- Output
+- Enter number of rows and columns: 3 3
+- Enter matrix elements:
+- 2 3 5 6 3 5 3 5 4
+- Matrix elements in column-wise order:
+- 2 6 3 3 3 5 5 5 4 
 
 
