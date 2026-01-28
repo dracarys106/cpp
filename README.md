@@ -206,9 +206,9 @@ int main() {
     return 0;
 }
 ```
--Output
--Value of dynamic integer: 10
--Modified value: 25
+- Output
+- Value of dynamic integer: 10
+- Modified value: 25
 ## Q11
 ```cpp
 #include <iostream>
@@ -223,9 +223,9 @@ int main() {
         for(int i=0;i<5;i++) cout << a[i] << " ";
 }
 ```
--output
--1 2 4 4
--1 4 3 4 5 
+- output
+- 1 2 4 4
+- 1 4 3 4 5 
 ## Q12
 ```cpp
 #include <iostream>
@@ -238,10 +238,10 @@ int main() {
        cout << *p++ << " " << x << "\n";
 }
 ```
--Output
--10 11
--12 12
--12 12
+- Output
+- 10 11
+- 12 12
+- 12 12
 ## Q13
 ```cpp
 #include <iostream>
@@ -252,8 +252,8 @@ int main() {
        cout << *(p+2) << " " << *(p-1) << "\n";
 }
 ```
--Output
--40 10
+- Output
+- 40 10
 ## Q14
 ```cpp
 #include <iostream>
@@ -280,16 +280,16 @@ int main() {
     return 0;
 }
 ```
--output
--Enter number of elements: 5
--Enter 5 elements:
--1
--2
--3
--4
--5
--Array elements are:
--1 2 3 4 5 
+- output
+- Enter number of elements: 5
+- Enter 5 elements:
+- 1
+- 2
+- 3
+- 4
+- 5
+- Array elements are:
+- 1 2 3 4 5 
 ## Q15
 ```cpp
 #include <iostream>
