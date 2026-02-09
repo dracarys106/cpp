@@ -554,35 +554,37 @@ int main() {
     return 0;
 }
 ```
--Output
--Enter details of student 1
--Roll number: 1
--Name: rishav
--Marks: 80
+```
+Output
+Enter details of student 1
+Roll number: 1
+Name: rishav
+Marks: 80
 
--Enter details of student 2
--Roll number: 2
--Name: raunak
--Marks: 65
+Enter details of student 2
+Roll number: 2
+Name: raunak
+Marks: 65
 
--Enter details of student 3
--Roll number: 3
--Name: sahil
--Marks: 70
+Enter details of student 3
+Roll number: 3
+Name: sahil
+Marks: 70
 
--Enter details of student 4
--Roll number: 4
--Name: rashmika
--Marks: 80
+Enter details of student 4
+Roll number: 4
+Name: rashmika
+Marks: 80
 
--Enter details of student 5
--Roll number: 5
--Name: tapin
--Marks: 59
+Enter details of student 5
+Roll number: 5
+Name: tapin
+Marks: 59
 
--Students scoring more than 75 marks:
--Roll: 1, Name: rishav, Marks: 80
--Roll: 4, Name: rashmika, Marks: 80
+Students scoring more than 75 marks:
+Roll: 1, Name: rishav, Marks: 80
+Roll: 4, Name: rashmika, Marks: 80
+```
 ## Q22
 ```cpp
 #include <iostream>
@@ -621,15 +623,17 @@ int main() {
     return 0;
 }
 ```
--Output
--Enter Employee ID: 1
--Enter Name: rishav
--Enter Basic Salary: 20000
+```
+Output
+Enter Employee ID: 1
+Enter Name: rishav
+Enter Basic Salary: 20000
 
--Employee Details
--ID: 1
--Name: rishav
--Gross Salary: 26000
+Employee Details
+ID: 1
+Name: rishav
+Gross Salary: 26000
+```
 ## Q23
 ```cpp
 #include <iostream>
