@@ -513,5 +513,157 @@ int main() {
 - 2 3 5 6 3 5 3 5 4
 - Matrix elements in column-wise order:
 - 2 6 3 3 3 5 5 5 4 
+## Q21
+```cpp
+#include <iostream>
+using namespace std;
 
+struct Student {
+    int roll;
+    string name;
+    float marks;
+};
+
+int main() {
+    Student s[5];
+
+    // Input details
+    for (int i = 0; i < 5; i++) {
+        cout << "\nEnter details of student " << i + 1 << endl;
+
+        cout << "Roll number: ";
+        cin >> s[i].roll;
+
+        cout << "Name: ";
+        cin >> s[i].name;
+
+        cout << "Marks: ";
+        cin >> s[i].marks;
+    }
+
+    // Display students with marks > 75
+    cout << "\nStudents scoring more than 75 marks:\n";
+    for (int i = 0; i < 5; i++) {
+        if (s[i].marks > 75) {
+            cout << "Roll: " << s[i].roll
+                 << ", Name: " << s[i].name
+                 << ", Marks: " << s[i].marks << endl;
+        }
+    }
+
+    return 0;
+}
+```
+-Output
+-Enter details of student 1
+-Roll number: 1
+-Name: rishav
+-Marks: 80
+
+-Enter details of student 2
+-Roll number: 2
+-Name: raunak
+-Marks: 65
+
+-Enter details of student 3
+-Roll number: 3
+-Name: sahil
+-Marks: 70
+
+-Enter details of student 4
+-Roll number: 4
+-Name: rashmika
+-Marks: 80
+
+-Enter details of student 5
+-Roll number: 5
+-Name: tapin
+-Marks: 59
+
+-Students scoring more than 75 marks:
+-Roll: 1, Name: rishav, Marks: 80
+-Roll: 4, Name: rashmika, Marks: 80
+## Q22
+```cpp
+#include <iostream>
+using namespace std;
+
+struct Employee {
+    int empId;
+    string name;
+    float basicSalary;
+};
+
+int main() {
+    Employee e;
+    float hra, da, grossSalary;
+
+    cout << "Enter Employee ID: ";
+    cin >> e.empId;
+
+    cout << "Enter Name: ";
+    cin >> e.name;
+
+    cout << "Enter Basic Salary: ";
+    cin >> e.basicSalary;
+
+    // Salary calculation
+    hra = 0.20 * e.basicSalary;
+    da  = 0.10 * e.basicSalary;
+    grossSalary = e.basicSalary + hra + da;
+
+    // Output
+    cout << "\nEmployee Details\n";
+    cout << "ID: " << e.empId << endl;
+    cout << "Name: " << e.name << endl;
+    cout << "Gross Salary: " << grossSalary << endl;
+
+    return 0;
+}
+```
+-Output
+-Enter Employee ID: 1
+-Enter Name: rishav
+-Enter Basic Salary: 20000
+
+-Employee Details
+-ID: 1
+-Name: rishav
+-Gross Salary: 26000
+## Q23
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[] = {10, 20, 30, 40};
+    int *p = arr;
+
+    cout << *p << endl;        // value at arr[0]
+    cout << *(p + 1) << endl;  // value at arr[1]
+    cout << *(p + 3) << endl;  // value at arr[3]
+
+    return 0;
+}
+```
+```
+Output
+10
+20
+40
+explanation 
+The * operator is used to access the value stored at the address the pointer is pointing to.
+*p
+p → address of arr[0]
+*p → value at arr[0]
+Value = 10
+*(p + 1)
+p + 1 moves the pointer to the next integer location
+That is arr[1]
+Value = 20
+*(p + 3)
+p + 3 moves the pointer to the 4th element
+That is arr[3]
+Value = 40
+```
 
