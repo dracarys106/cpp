@@ -1552,6 +1552,1801 @@ Output
 Value: 10
 Modified Value: 100
 ```
+## Q42
+```cpp
+#include <iostream>
+using namespace std;
+
+class Student {
+private:
+    string name;
+    int rollNumber;
+    float marks;
+
+public:
+    // Function to input student details
+    void input() {
+        cout << "Enter Name: ";
+        cin >> name;
+        cout << "Enter Roll Number: ";
+        cin >> rollNumber;
+        cout << "Enter Marks: ";
+        cin >> marks;
+    }
+
+    // Function to display student details
+    void display() {
+        cout << "\nStudent Details:" << endl;
+        cout << "Name: " << name << endl;
+        cout << "Roll Number: " << rollNumber << endl;
+        cout << "Marks: " << marks << endl;
+    }
+};
+
+int main() {
+    Student s1, s2, s3;
+
+    cout << "Enter details for Student 1" << endl;
+    s1.input();
+
+    cout << "\nEnter details for Student 2" << endl;
+    s2.input();
+
+    cout << "\nEnter details for Student 3" << endl;
+    s3.input();
+
+    cout << "\nDisplaying Student Information:" << endl;
+    s1.display();
+    s2.display();
+    s3.display();
+
+    return 0;
+}
+```
+```
+Input:
+Enter details for Student 1
+Enter Name: rishav
+Enter Roll Number: 3
+Enter Marks: 25
+
+Enter details for Student 2
+Enter Name: nishant
+Enter Roll Number: 2
+Enter Marks: 24
+
+Enter details for Student 3
+Enter Name: raj
+Enter Roll Number: 1
+Enter Marks: 26
+```
+```
+Output:
+Displaying Student Information:
+
+Student Details:
+Name: rishav
+Roll Number: 3
+Marks: 25
+
+Student Details:
+Name: nishant
+Roll Number: 2
+Marks: 24
+
+Student Details:
+Name: raj
+Roll Number: 1
+Marks: 26
+```
+## Q43
+```cpp
+#include <iostream>
+using namespace std;
+
+class BankAccount {
+private:
+    int accountNumber;
+    double balance;
+
+public:
+    // Constructor
+    BankAccount(int accNo, double bal) {
+        accountNumber = accNo;
+        balance = bal;
+        cout << "Account Created! Account No: " 
+             << accountNumber << ", Balance: " 
+             << balance << endl;
+    }
+
+    // Destructor
+    ~BankAccount() {
+        cout << "Account No: " << accountNumber 
+             << " is being destroyed." << endl;
+    }
+
+    // Display function
+    void display() {
+        cout << "Account No: " << accountNumber 
+             << ", Balance: " << balance << endl;
+    }
+};
+
+// Function to create objects using user input
+void createAccounts() {
+    int accNo1, accNo2;
+    double bal1, bal2;
+
+    cout << "\nEnter details for Account 1\n";
+    cout << "Account Number: ";
+    cin >> accNo1;
+    cout << "Balance: ";
+    cin >> bal1;
+
+    cout << "\nEnter details for Account 2\n";
+    cout << "Account Number: ";
+    cin >> accNo2;
+    cout << "Balance: ";
+    cin >> bal2;
+
+    BankAccount acc1(accNo1, bal1);
+    BankAccount acc2(accNo2, bal2);
+
+    cout << "\nInside createAccounts() function." << endl;
+    acc1.display();
+    acc2.display();
+
+} // Destructor automatically called here
+
+int main() {
+    cout << "Entering main()" << endl;
+
+    createAccounts();
+
+    cout << "Back in main()" << endl;
+
+    return 0;
+}
+```
+```
+Output:
+Entering main()
+
+Enter details for Account 1
+Account Number: 11454
+Balance: 500000
+
+Enter details for Account 2
+Account Number: 29082
+Balance: 400000
+Account Created! Account No: 11454, Balance: 500000
+Account Created! Account No: 29082, Balance: 400000
+
+Inside createAccounts() function.
+Account No: 11454, Balance: 500000
+Account No: 29082, Balance: 400000
+Account No: 29082 is being destroyed.
+Account No: 11454 is being destroyed.
+Back in main()
+```
+## Q44
+```cpp
+#include <iostream>
+using namespace std;
+
+class Employee {
+private:
+    string name;
+    double salary;
+
+public:
+    // Constructor
+    Employee(string empName, double empSalary) {
+        name = empName;
+        setSalary(empSalary);  // Validation
+    }
+
+    // Setter with validation
+    void setSalary(double empSalary) {
+        if (empSalary >= 0) {
+            salary = empSalary;
+        } else {
+            cout << "Error: Salary cannot be negative. Setting salary to 0.\n";
+            salary = 0;
+        }
+    }
+
+    // Getter
+    double getSalary() const {
+        return salary;
+    }
+
+    void display() const {
+        cout << "Employee Name: " << name << endl;
+        cout << "Salary: " << salary << endl;
+    }
+};
+
+int main() {
+    string name1, name2;
+    double salary1, salary2;
+
+    // Input for Employee 1
+    cout << "Enter name of Employee 1: ";
+    cin >> name1;
+    cout << "Enter salary of Employee 1: ";
+    cin >> salary1;
+
+    // Input for Employee 2
+    cout << "\nEnter name of Employee 2: ";
+    cin >> name2;
+    cout << "Enter salary of Employee 2: ";
+    cin >> salary2;
+
+    // Creating objects using user input
+    Employee emp1(name1, salary1);
+    Employee emp2(name2, salary2);
+
+    cout << "\nEmployee 1 Details:\n";
+    emp1.display();
+
+    cout << "\nEmployee 2 Details:\n";
+    emp2.display();
+
+    // Update salary example
+    double newSalary;
+    cout << "\nEnter new salary for Employee 2: ";
+    cin >> newSalary;
+
+    emp2.setSalary(newSalary);
+
+    cout << "\nAfter updating salary:\n";
+    emp2.display();
+
+    return 0;
+}
+```
+```
+Input:
+Enter name of Employee 1: rishav
+Enter salary of Employee 1: 400000
+
+Enter name of Employee 2: nikhil
+Enter salary of Employee 2: -500000
+Output:
+ERROR!
+Error: Salary cannot be negative. Setting salary to 0.
+
+Employee 1 Details:
+Employee Name: rishav
+Salary: 400000
+
+Employee 2 Details:
+Employee Name: nikhil
+Salary: 0
+
+Enter new salary for Employee 2: 500000
+
+After updating salary:
+Employee Name: nikhil
+Salary: 500000
+```
+## Q45
+```cpp
+#include <iostream>
+using namespace std;
+
+class Calculator {
+public:
+    // Add two integers
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    // Add two double values
+    double add(double a, double b) {
+        return a + b;
+    }
+
+    // Add three integers
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+};
+
+int main() {
+    Calculator calc;
+
+    int choice;
+
+    cout << "Choose an option:\n";
+    cout << "1. Add two integers\n";
+    cout << "2. Add two doubles\n";
+    cout << "3. Add three integers\n";
+    cout << "Enter your choice: ";
+    cin >> choice;
+
+    if (choice == 1) {
+        int a, b;
+        cout << "Enter two integers: ";
+        cin >> a >> b;
+        cout << "Sum: " << calc.add(a, b) << endl;
+    }
+    else if (choice == 2) {
+        double a, b;
+        cout << "Enter two double values: ";
+        cin >> a >> b;
+        cout << "Sum: " << calc.add(a, b) << endl;
+    }
+    else if (choice == 3) {
+        int a, b, c;
+        cout << "Enter three integers: ";
+        cin >> a >> b >> c;
+        cout << "Sum: " << calc.add(a, b, c) << endl;
+    }
+    else {
+        cout << "Invalid choice!" << endl;
+    }
+
+    return 0;
+}
+```
+```
+Output
+Choose an option:
+1. Add two integers
+2. Add two doubles
+3. Add three integers
+Enter your choice: 1
+Enter two integers: 35 67
+Sum: 102
+```
+## Q46
+```cpp
+#include <iostream>
+using namespace std;
+
+struct Subject {
+    string name;
+    int marks;
+};
+
+class Student {
+private:
+    int roll;
+    string name;
+    Subject* subjects;
+    int n;
+
+public:
+    // Constructor
+    Student(int numSubjects) {
+        n = numSubjects;
+        subjects = new Subject[n];
+    }
+
+    // Destructor
+    ~Student() {
+        delete[] subjects;
+    }
+
+    void input() {
+        cout << "\nEnter Roll Number: ";
+        cin >> roll;
+
+        cout << "Enter Name: ";
+        cin >> name;
+
+        for (int i = 0; i < n; i++) {
+            cout << "\nSubject " << i + 1 << " Name: ";
+            cin >> subjects[i].name;
+            cout << "Marks: ";
+            cin >> subjects[i].marks;
+        }
+    }
+
+    void display() {
+        cout << "\nRoll No: " << roll;
+        cout << "\nName: " << name;
+        cout << "\nSubjects:\n";
+
+        for (int i = 0; i < n; i++) {
+            cout << subjects[i].name << " - "
+                 << subjects[i].marks << endl;
+        }
+
+        cout << "Total: " << total();
+        cout << "\nGrade: " << grade() << endl;
+    }
+
+    int total() {
+        int sum = 0;
+        for (int i = 0; i < n; i++)
+            sum += subjects[i].marks;
+        return sum;
+    }
+
+    char grade() {
+        float avg = (float) total() / n;
+
+        if (avg >= 90) return 'A';
+        else if (avg >= 75) return 'B';
+        else if (avg >= 50) return 'C';
+        else return 'F';
+    }
+};
+
+int main() {
+    int numStudents, numSubjects;
+
+    cout << "Enter number of students: ";
+    cin >> numStudents;
+
+    cout << "Enter number of subjects per student: ";
+    cin >> numSubjects;
+
+    // Create array of pointers
+    Student** students = new Student*[numStudents];
+
+    // Create each student object
+    for (int i = 0; i < numStudents; i++) {
+        students[i] = new Student(numSubjects);
+    }
+
+    // Input data
+    for (int i = 0; i < numStudents; i++) {
+        cout << "\nEnter details for Student " << i + 1;
+        students[i]->input();
+    }
+
+    // Find topper
+    int topper = 0;
+    int highest = students[0]->total();
+
+    for (int i = 1; i < numStudents; i++) {
+        if (students[i]->total() > highest) {
+            highest = students[i]->total();
+            topper = i;
+        }
+    }
+
+    // Display all students
+    cout << "\n--- All Students ---\n";
+    for (int i = 0; i < numStudents; i++) {
+        students[i]->display();
+    }
+
+    // Display topper
+    cout << "\n--- Topper ---\n";
+    students[topper]->display();
+
+    // Free memory properly
+    for (int i = 0; i < numStudents; i++) {
+        delete students[i];
+    }
+    delete[] students;
+
+    return 0;
+}
+```
+```
+Input:
+Enter number of students: 2
+Enter number of subjects per student: 2
+
+Enter details for Student 1
+Enter Roll Number: 1
+Enter Name: rishav
+
+Subject 1 Name: eng
+Marks: 38
+
+Subject 2 Name: maths
+Marks: 35
+
+Enter details for Student 2
+Enter Roll Number: 2
+Enter Name: ronny
+
+Subject 1 Name: maths
+Marks: 39
+
+Subject 2 Name: sci
+Marks: 35
+Output:
+--- All Students ---
+
+Roll No: 1
+Name: rishav
+Subjects:
+eng - 38
+maths - 35
+Total: 73
+Grade: F
+
+Roll No: 2
+Name: ronny
+Subjects:
+maths - 39
+sci - 35
+Total: 74
+Grade: F
+
+--- Topper ---
+
+Roll No: 2
+Name: ronny
+Subjects:
+maths - 39
+sci - 35
+Total: 74
+Grade: F
+```
+## Q47
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Structure for Patient
+struct Patient {
+    int id;
+    string name;
+    int severity; // Higher value = higher priority
+};
+
+// Node structure for linked list
+struct Node {
+    Patient data;
+    Node* next;
+};
+
+class PatientQueue {
+private:
+    Node* front; // Pointer to front of queue
+
+public:
+    // Constructor
+    PatientQueue() {
+        front = nullptr;
+    }
+
+    // Destructor to free all memory
+    ~PatientQueue() {
+        while (front != nullptr) {
+            Node* temp = front;
+            front = front->next;
+            delete temp;
+        }
+    }
+
+    // Enqueue based on severity (higher severity first)
+    void enqueue(Patient p) {
+        Node* newNode = new Node;
+        newNode->data = p;
+        newNode->next = nullptr;
+
+        // If queue is empty or new node has higher severity
+        if (front == nullptr || p.severity > front->data.severity) {
+            newNode->next = front;
+            front = newNode;
+        } else {
+            // Traverse to find correct position
+            Node* temp = front;
+            while (temp->next != nullptr && temp->next->data.severity >= p.severity) {
+                temp = temp->next;
+            }
+            newNode->next = temp->next;
+            temp->next = newNode;
+        }
+        cout << "Patient " << p.name << " enqueued successfully.\n";
+    }
+
+    // Dequeue (remove front patient)
+    void dequeue() {
+        if (front == nullptr) {
+            cout << "Queue is empty. Cannot dequeue.\n";
+            return;
+        }
+        Node* temp = front;
+        cout << "Dequeued Patient: " << front->data.name << " (Severity: " 
+             << front->data.severity << ")\n";
+        front = front->next;
+        delete temp;
+    }
+
+    // Display all patients
+    void display() {
+        if (front == nullptr) {
+            cout << "Queue is empty.\n";
+            return;
+        }
+        cout << "\nPatient Queue (High -> Low Severity):\n";
+        Node* temp = front;
+        while (temp != nullptr) {
+            cout << "ID: " << temp->data.id 
+                 << ", Name: " << temp->data.name 
+                 << ", Severity: " << temp->data.severity << endl;
+            temp = temp->next;
+        }
+    }
+};
+
+int main() {
+    PatientQueue pq;
+    int choice;
+
+    do {
+        cout << "\n--- Patient Queue Menu ---\n";
+        cout << "1. Enqueue Patient\n";
+        cout << "2. Dequeue Patient\n";
+        cout << "3. Display Queue\n";
+        cout << "4. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: {
+                Patient p;
+                cout << "Enter Patient ID: ";
+                cin >> p.id;
+                cout << "Enter Patient Name: ";
+                cin >> p.name;
+                cout << "Enter Severity (higher number = more severe): ";
+                cin >> p.severity;
+                pq.enqueue(p);
+                break;
+            }
+            case 2:
+                pq.dequeue();
+                break;
+            case 3:
+                pq.display();
+                break;
+            case 4:
+                cout << "Exiting...\n";
+                break;
+            default:
+                cout << "Invalid choice! Try again.\n";
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
+```
+```
+Output
+--- Patient Queue Menu ---
+1. Enqueue Patient
+2. Dequeue Patient
+3. Display Queue
+4. Exit
+Enter your choice: 1
+Enter Patient ID: 234
+Enter Patient Name: panshul
+Enter Severity (higher number = more severe): 99
+Patient panshul enqueued successfully.
+
+--- Patient Queue Menu ---
+1. Enqueue Patient
+2. Dequeue Patient
+3. Display Queue
+4. Exit
+Enter your choice: 2
+Dequeued Patient: panshul (Severity: 99)
+
+--- Patient Queue Menu ---
+1. Enqueue Patient
+2. Dequeue Patient
+3. Display Queue
+4. Exit
+Enter your choice: 3
+Queue is empty.
+
+--- Patient Queue Menu ---
+1. Enqueue Patient
+2. Dequeue Patient
+3. Display Queue
+4. Exit
+Enter your choice: 4
+Exiting...
+```
+## Q48
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Structure for a book node
+struct BookNode {
+    int id;
+    string title;
+    string author;
+    bool issued;       // true if issued, false otherwise
+    BookNode* next;
+};
+
+// Library class
+class Library {
+private:
+    BookNode* head;
+
+public:
+    // Constructor
+    Library() {
+        head = nullptr;
+    }
+
+    // Destructor to free all memory
+    ~Library() {
+        BookNode* temp;
+        while (head != nullptr) {
+            temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
+
+    // Add a new book to the library
+    void addBook(int id, const string& title, const string& author) {
+        BookNode* newBook = new BookNode;
+        newBook->id = id;
+        newBook->title = title;
+        newBook->author = author;
+        newBook->issued = false;
+        newBook->next = nullptr;
+
+        if (head == nullptr) {
+            head = newBook;
+        } else {
+            BookNode* temp = head;
+            while (temp->next != nullptr) {
+                temp = temp->next;
+            }
+            temp->next = newBook;
+        }
+        cout << "Book added successfully.\n";
+    }
+
+    // Issue a book by ID
+    void issueBook(int id) {
+        BookNode* temp = head;
+        while (temp != nullptr) {
+            if (temp->id == id) {
+                if (!temp->issued) {
+                    temp->issued = true;
+                    cout << "Book '" << temp->title << "' issued successfully.\n";
+                } else {
+                    cout << "Book '" << temp->title << "' is already issued.\n";
+                }
+                return;
+            }
+            temp = temp->next;
+        }
+        cout << "Book with ID " << id << " not found.\n";
+    }
+
+    // Return a book by ID
+    void returnBook(int id) {
+        BookNode* temp = head;
+        while (temp != nullptr) {
+            if (temp->id == id) {
+                if (temp->issued) {
+                    temp->issued = false;
+                    cout << "Book '" << temp->title << "' returned successfully.\n";
+                } else {
+                    cout << "Book '" << temp->title << "' was not issued.\n";
+                }
+                return;
+            }
+            temp = temp->next;
+        }
+        cout << "Book with ID " << id << " not found.\n";
+    }
+
+    // Search for a book by title
+    void searchBook(const string& title) {
+        BookNode* temp = head;
+        while (temp != nullptr) {
+            if (temp->title == title) {
+                cout << "Book Found! ID: " << temp->id
+                     << ", Author: " << temp->author
+                     << ", Issued: " << (temp->issued ? "Yes" : "No") << endl;
+                return;
+            }
+            temp = temp->next;
+        }
+        cout << "Book '" << title << "' not found in the library.\n";
+    }
+
+    // Display all books
+    void displayAll() {
+        if (head == nullptr) {
+            cout << "Library is empty.\n";
+            return;
+        }
+        cout << "\n--- All Books in Library ---\n";
+        BookNode* temp = head;
+        while (temp != nullptr) {
+            cout << "ID: " << temp->id
+                 << ", Title: " << temp->title
+                 << ", Author: " << temp->author
+                 << ", Issued: " << (temp->issued ? "Yes" : "No") << endl;
+            temp = temp->next;
+        }
+    }
+};
+
+int main() {
+    Library lib;
+    int choice;
+
+    do {
+        cout << "\n--- Library Menu ---\n";
+        cout << "1. Add Book\n";
+        cout << "2. Issue Book\n";
+        cout << "3. Return Book\n";
+        cout << "4. Search Book by Title\n";
+        cout << "5. Display All Books\n";
+        cout << "6. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: {
+                int id;
+                string title, author;
+                cout << "Enter Book ID: ";
+                cin >> id;
+                cin.ignore(); // clear newline
+                cout << "Enter Book Title: ";
+                getline(cin, title);
+                cout << "Enter Author Name: ";
+                getline(cin, author);
+                lib.addBook(id, title, author);
+                break;
+            }
+            case 2: {
+                int id;
+                cout << "Enter Book ID to issue: ";
+                cin >> id;
+                lib.issueBook(id);
+                break;
+            }
+            case 3: {
+                int id;
+                cout << "Enter Book ID to return: ";
+                cin >> id;
+                lib.returnBook(id);
+                break;
+            }
+            case 4: {
+                string title;
+                cin.ignore(); // clear newline
+                cout << "Enter Book Title to search: ";
+                getline(cin, title);
+                lib.searchBook(title);
+                break;
+            }
+            case 5:
+                lib.displayAll();
+                break;
+            case 6:
+                cout << "Exiting Library System.\n";
+                break;
+            default:
+                cout << "Invalid choice! Try again.\n";
+        }
+    } while (choice != 6);
+
+    return 0;
+}
+```
+```
+Output
+--- Library Menu ---
+1. Add Book
+2. Issue Book
+3. Return Book
+4. Search Book by Title
+5. Display All Books
+6. Exit
+Enter your choice: 1
+Enter Book ID: 305
+Enter Book Title: harry potter
+Enter Author Name: jk rowling
+Book added successfully.
+
+--- Library Menu ---
+1. Add Book
+2. Issue Book
+3. Return Book
+4. Search Book by Title
+5. Display All Books
+6. Exit
+Enter your choice: 2
+Enter Book ID to issue: 305
+Book 'harry potter' issued successfully.
+
+--- Library Menu ---
+1. Add Book
+2. Issue Book
+3. Return Book
+4. Search Book by Title
+5. Display All Books
+6. Exit
+Enter your choice: 3
+Enter Book ID to return: 
+305
+Book 'harry potter' returned successfully.
+
+--- Library Menu ---
+1. Add Book
+2. Issue Book
+3. Return Book
+4. Search Book by Title
+5. Display All Books
+6. Exit
+Enter your choice: 4
+Enter Book Title to search: harry potter
+Book Found! ID: 305, Author: jk rowling, Issued: No
+
+--- Library Menu ---
+1. Add Book
+2. Issue Book
+3. Return Book
+4. Search Book by Title
+5. Display All Books
+6. Exit
+Enter your choice: 5
+
+--- All Books in Library ---
+ID: 305, Title: harry potter, Author: jk rowling, Issued: No
+
+--- Library Menu ---
+1. Add Book
+2. Issue Book
+3. Return Book
+4. Search Book by Title
+5. Display All Books
+6. Exit
+Enter your choice: 6
+Exiting Library System.
+```
+## Q49
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Structure for Transaction
+struct Transaction {
+    string type;   // "Deposit" or "Withdraw"
+    double amount;
+    string date;
+    Transaction* next;
+};
+
+// Class for Bank Account
+class BankAccount {
+private:
+    int accountNo;
+    string holderName;
+    double balance;
+    Transaction* historyHead;
+
+    // Add a transaction to the history
+    void addTransaction(const string& type, double amount, const string& date) {
+        Transaction* newTrans = new Transaction;
+        newTrans->type = type;
+        newTrans->amount = amount;
+        newTrans->date = date;
+        newTrans->next = nullptr;
+
+        if (historyHead == nullptr) {
+            historyHead = newTrans;
+        } else {
+            Transaction* temp = historyHead;
+            while (temp->next != nullptr) {
+                temp = temp->next;
+            }
+            temp->next = newTrans;
+        }
+    }
+
+public:
+    // Constructor
+    BankAccount(int accNo, const string& name, double bal) {
+        accountNo = accNo;
+        holderName = name;
+        balance = bal;
+        historyHead = nullptr;
+        if (bal > 0)
+            addTransaction("Deposit", bal, "Initial");
+    }
+
+    // Destructor
+    ~BankAccount() {
+        Transaction* temp;
+        while (historyHead != nullptr) {
+            temp = historyHead;
+            historyHead = historyHead->next;
+            delete temp;
+        }
+    }
+
+    // Deposit money
+    void deposit(double amt, const string& date) {
+        if (amt <= 0) {
+            cout << "Invalid deposit amount.\n";
+            return;
+        }
+        balance += amt;
+        addTransaction("Deposit", amt, date);
+        cout << "Deposited " << amt << " successfully.\n";
+    }
+
+    // Withdraw money
+    void withdraw(double amt, const string& date) {
+        if (amt <= 0) {
+            cout << "Invalid withdrawal amount.\n";
+            return;
+        }
+        if (amt > balance) {
+            cout << "Insufficient balance!\n";
+            return;
+        }
+        balance -= amt;
+        addTransaction("Withdraw", amt, date);
+        cout << "Withdrawn " << amt << " successfully.\n";
+    }
+
+    // Show transaction history
+    void showHistory() {
+        if (historyHead == nullptr) {
+            cout << "No transactions yet.\n";
+            return;
+        }
+        cout << "\nTransaction History for Account " << accountNo << ":\n";
+        Transaction* temp = historyHead;
+        while (temp != nullptr) {
+            cout << temp->date << " - " << temp->type << " - " << temp->amount << endl;
+            temp = temp->next;
+        }
+    }
+
+    // Show current balance
+    void showBalance() {
+        cout << "Account No: " << accountNo
+             << ", Holder: " << holderName
+             << ", Balance: " << balance << endl;
+    }
+
+    // Getter for account number
+    int getAccountNo() const {
+        return accountNo;
+    }
+};
+
+int main() {
+    int numAccounts;
+    cout << "Enter number of accounts to create: ";
+    cin >> numAccounts;
+
+    BankAccount** accounts = new BankAccount*[numAccounts];
+
+    // Create accounts
+    for (int i = 0; i < numAccounts; i++) {
+        int accNo;
+        string name;
+        double initialBalance;
+
+        cout << "\nEnter details for Account " << i + 1 << ":\n";
+        cout << "Account Number: ";
+        cin >> accNo;
+        cin.ignore(); // clear newline
+        cout << "Holder Name: ";
+        getline(cin, name);
+        cout << "Initial Balance: ";
+        cin >> initialBalance;
+
+        accounts[i] = new BankAccount(accNo, name, initialBalance);
+    }
+
+    int choice;
+    do {
+        cout << "\n--- Bank Menu ---\n";
+        cout << "1. Deposit\n";
+        cout << "2. Withdraw\n";
+        cout << "3. Show Balance\n";
+        cout << "4. Show Transaction History\n";
+        cout << "5. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        if (choice >= 1 && choice <= 4) {
+            int accNo;
+            cout << "Enter Account Number: ";
+            cin >> accNo;
+
+            // Find account
+            BankAccount* account = nullptr;
+            for (int i = 0; i < numAccounts; i++) {
+                if (accounts[i]->getAccountNo() == accNo) {
+                    account = accounts[i];
+                    break;
+                }
+            }
+
+            if (account == nullptr) {
+                cout << "Account not found!\n";
+                continue;
+            }
+
+            if (choice == 1) {
+                double amt;
+                string date;
+                cout << "Enter amount to deposit: ";
+                cin >> amt;
+                cin.ignore();
+                cout << "Enter date (YYYY-MM-DD): ";
+                getline(cin, date);
+                account->deposit(amt, date);
+            } else if (choice == 2) {
+                double amt;
+                string date;
+                cout << "Enter amount to withdraw: ";
+                cin >> amt;
+                cin.ignore();
+                cout << "Enter date (YYYY-MM-DD): ";
+                getline(cin, date);
+                account->withdraw(amt, date);
+            } else if (choice == 3) {
+                account->showBalance();
+            } else if (choice == 4) {
+                account->showHistory();
+            }
+        } else if (choice != 5) {
+            cout << "Invalid choice! Try again.\n";
+        }
+
+    } while (choice != 5);
+
+    // Free memory
+    for (int i = 0; i < numAccounts; i++) {
+        delete accounts[i];
+    }
+    delete[] accounts;
+
+    cout << "Exiting Bank System.\n";
+    return 0;
+}
+```
+```
+Output
+Enter number of accounts to create: 3
+
+Enter details for Account 1:
+Account Number: 209
+Holder Name: rishav
+Initial Balance: 5000
+
+Enter details for Account 2:
+Account Number: 205
+Holder Name: panshul
+Initial Balance: 5000000
+
+Enter details for Account 3:
+Account Number: 3
+Holder Name: ronny
+Initial Balance: 6000
+
+--- Bank Menu ---
+1. Deposit
+2. Withdraw
+3. Show Balance
+4. Show Transaction History
+5. Exit
+Enter your choice: 1
+Enter Account Number: 209
+Enter amount to deposit: 4000
+Enter date (YYYY-MM-DD): 2026-01-30
+Deposited 4000 successfully.
+
+--- Bank Menu ---
+1. Deposit
+2. Withdraw
+3. Show Balance
+4. Show Transaction History
+5. Exit
+Enter your choice: 3
+Enter Account Number: 209
+Account No: 209, Holder: rishav, Balance: 9000
+
+--- Bank Menu ---
+1. Deposit
+2. Withdraw
+3. Show Balance
+4. Show Transaction History
+5. Exit
+Enter your choice: 4
+Enter Account Number: 209
+
+Transaction History for Account 209:
+Initial - Deposit - 5000
+2026-01-30 - Deposit - 4000
+
+--- Bank Menu ---
+1. Deposit
+2. Withdraw
+3. Show Balance
+4. Show Transaction History
+5. Exit
+Enter your choice: 5
+Exiting Bank System.
+```
+## Q50
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Structure for Course
+struct Course {
+    string courseCode;
+    string courseName;
+    int credits;
+};
+
+// Class for Student
+class Student {
+private:
+    int roll;
+    string name;
+    Course* registeredCourses; // dynamic array of courses
+    int courseCount;           // number of registered courses
+
+public:
+    // Constructor
+    Student(int r, const string& n) {
+        roll = r;
+        name = n;
+        registeredCourses = nullptr;
+        courseCount = 0;
+    }
+
+    // Destructor
+    ~Student() {
+        delete[] registeredCourses;
+    }
+
+    // Register a new course
+    void registerCourses() {
+        int n;
+        cout << "How many courses to register for " << name << "? ";
+        cin >> n;
+
+        // Create new dynamic array for registered courses
+        Course* newCourses = new Course[courseCount + n];
+
+        // Copy old courses if any
+        for (int i = 0; i < courseCount; i++)
+            newCourses[i] = registeredCourses[i];
+
+        // Input new courses
+        for (int i = 0; i < n; i++) {
+            cout << "Enter Course Code: ";
+            cin >> newCourses[courseCount + i].courseCode;
+            cin.ignore();
+            cout << "Enter Course Name: ";
+            getline(cin, newCourses[courseCount + i].courseName);
+            cout << "Enter Credits: ";
+            cin >> newCourses[courseCount + i].credits;
+        }
+
+        delete[] registeredCourses;       // free old array
+        registeredCourses = newCourses;   // assign new array
+        courseCount += n;
+
+        cout << "Courses registered successfully for " << name << ".\n";
+    }
+
+    // Drop a course by code
+    void dropCourse(const string& code) {
+        int index = -1;
+        for (int i = 0; i < courseCount; i++) {
+            if (registeredCourses[i].courseCode == code) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index == -1) {
+            cout << "Course not found.\n";
+            return;
+        }
+
+        // Shift courses left to remove
+        for (int i = index; i < courseCount - 1; i++) {
+            registeredCourses[i] = registeredCourses[i + 1];
+        }
+        courseCount--;
+
+        cout << "Course " << code << " dropped successfully from " << name << ".\n";
+    }
+
+    // Show all registered courses
+    void showCourses() {
+        if (courseCount == 0) {
+            cout << name << " has no registered courses.\n";
+            return;
+        }
+        cout << "\nCourses registered for " << name << ":\n";
+        for (int i = 0; i < courseCount; i++) {
+            cout << registeredCourses[i].courseCode << " - "
+                 << registeredCourses[i].courseName
+                 << " (" << registeredCourses[i].credits << " credits)\n";
+        }
+    }
+
+    // Total credits
+    int totalCredits() {
+        int total = 0;
+        for (int i = 0; i < courseCount; i++)
+            total += registeredCourses[i].credits;
+        return total;
+    }
+
+    // Getter for roll number
+    int getRoll() const { return roll; }
+
+    // Getter for student name
+    string getName() const { return name; }
+
+    // Check if student is registered in a course
+    bool isRegisteredIn(const string& courseCode) const {
+        for (int i = 0; i < courseCount; i++) {
+            if (registeredCourses[i].courseCode == courseCode)
+                return true;
+        }
+        return false;
+    }
+};
+
+int main() {
+    int numStudents;
+    cout << "Enter number of students: ";
+    cin >> numStudents;
+
+    Student** students = new Student*[numStudents];
+
+    // Input student details
+    for (int i = 0; i < numStudents; i++) {
+        int roll;
+        string name;
+        cout << "\nEnter details for Student " << i + 1 << ":\n";
+        cout << "Roll Number: ";
+        cin >> roll;
+        cin.ignore();
+        cout << "Name: ";
+        getline(cin, name);
+        students[i] = new Student(roll, name);
+
+        // Register courses for each student
+        students[i]->registerCourses();
+    }
+
+    int choice;
+    do {
+        cout << "\n--- Menu ---\n";
+        cout << "1. Show Courses of a Student\n";
+        cout << "2. Drop a Course for a Student\n";
+        cout << "3. Show Total Credits of a Student\n";
+        cout << "4. Show Students Registered in a Course\n";
+        cout << "5. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        if (choice == 1) {
+            int roll;
+            cout << "Enter Roll Number: ";
+            cin >> roll;
+            for (int i = 0; i < numStudents; i++) {
+                if (students[i]->getRoll() == roll) {
+                    students[i]->showCourses();
+                    break;
+                }
+            }
+        } else if (choice == 2) {
+            int roll;
+            string code;
+            cout << "Enter Roll Number: ";
+            cin >> roll;
+            cin.ignore();
+            cout << "Enter Course Code to drop: ";
+            getline(cin, code);
+            for (int i = 0; i < numStudents; i++) {
+                if (students[i]->getRoll() == roll) {
+                    students[i]->dropCourse(code);
+                    break;
+                }
+            }
+        } else if (choice == 3) {
+            int roll;
+            cout << "Enter Roll Number: ";
+            cin >> roll;
+            for (int i = 0; i < numStudents; i++) {
+                if (students[i]->getRoll() == roll) {
+                    cout << students[i]->getName() << " has total "
+                         << students[i]->totalCredits() << " credits.\n";
+                    break;
+                }
+            }
+        } else if (choice == 4) {
+            string code;
+            cin.ignore();
+            cout << "Enter Course Code: ";
+            getline(cin, code);
+            cout << "\nStudents registered in " << code << ":\n";
+            for (int i = 0; i < numStudents; i++) {
+                if (students[i]->isRegisteredIn(code))
+                    cout << students[i]->getName() << " (Roll: "
+                         << students[i]->getRoll() << ")\n";
+            }
+        } else if (choice != 5) {
+            cout << "Invalid choice! Try again.\n";
+        }
+
+    } while (choice != 5);
+
+    // Free memory
+    for (int i = 0; i < numStudents; i++)
+        delete students[i];
+    delete[] students;
+
+    return 0;
+}
+```
+```
+Output
+Enter number of students: 2
+
+Enter details for Student 1:
+Roll Number: 1
+Name: rishav
+How many courses to register for rishav? 2
+Enter Course Code: 105
+Enter Course Name: maths
+Enter Credits: 4
+Enter Course Code: 106
+Enter Course Name: cpp
+Enter Credits: 4
+Courses registered successfully for rishav.
+
+Enter details for Student 2:
+Roll Number: 3
+Name: ronny
+How many courses to register for ronny? 2
+Enter Course Code: 106
+Enter Course Name: cpp
+Enter Credits: 4
+Enter Course Code: 107
+Enter Course Name: mfc
+Enter Credits: 4
+Courses registered successfully for ronny.
+
+--- Menu ---
+1. Show Courses of a Student
+2. Drop a Course for a Student
+3. Show Total Credits of a Student
+4. Show Students Registered in a Course
+5. Exit
+Enter your choice: 1
+Enter Roll Number: 1
+
+Courses registered for rishav:
+105 - maths (4 credits)
+106 - cpp (4 credits)
+
+--- Menu ---
+1. Show Courses of a Student
+2. Drop a Course for a Student
+3. Show Total Credits of a Student
+4. Show Students Registered in a Course
+5. Exit
+Enter your choice: 3
+Enter Roll Number: 3
+ronny has total 8 credits.
+
+--- Menu ---
+1. Show Courses of a Student
+2. Drop a Course for a Student
+3. Show Total Credits of a Student
+4. Show Students Registered in a Course
+5. Exit
+Enter your choice: 4
+Enter Course Code: 105
+
+Students registered in 105:
+rishav (Roll: 1)
+
+--- Menu ---
+1. Show Courses of a Student
+2. Drop a Course for a Student
+3. Show Total Credits of a Student
+4. Show Students Registered in a Course
+5. Exit
+Enter your choice: 5
+```
+## Q51
+```cpp
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+
+// Structure for directory/file node
+struct DirNode {
+    string name;
+    bool isFile;
+    DirNode* child;   // first child
+    DirNode* sibling; // next sibling
+
+    DirNode(const string& n, bool file) : name(n), isFile(file), child(nullptr), sibling(nullptr) {}
+};
+
+// Class for Directory Tree
+class DirectoryTree {
+private:
+    DirNode* root;
+
+    // Helper function to split path
+    void splitPath(const string& path, string parts[], int& count) {
+        stringstream ss(path);
+        string token;
+        count = 0;
+        while (getline(ss, token, '/')) {
+            if (!token.empty())
+                parts[count++] = token;
+        }
+    }
+
+    // Helper function to find node (returns parent if create = false)
+    DirNode* findNode(const string path, bool create = false, bool asFile = false) {
+        if (path == "/") return root;
+
+        string parts[100];
+        int n;
+        splitPath(path, parts, n);
+
+        DirNode* curr = root;
+        for (int i = 0; i < n; i++) {
+            DirNode* prev = nullptr;
+            DirNode* temp = curr->child;
+            while (temp != nullptr && temp->name != parts[i]) {
+                prev = temp;
+                temp = temp->sibling;
+            }
+
+            if (!temp) {
+                if (create) {
+                    // Create new folder/file
+                    temp = new DirNode(parts[i], asFile && i == n-1);
+                    if (!curr->child) {
+                        curr->child = temp;
+                    } else {
+                        prev->sibling = temp;
+                    }
+                } else {
+                    return nullptr; // not found
+                }
+            }
+
+            curr = temp;
+        }
+        return curr;
+    }
+
+    // Helper function to list contents
+    void listHelper(DirNode* node, int level = 0) {
+        if (!node) return;
+        for (DirNode* temp = node->child; temp != nullptr; temp = temp->sibling) {
+            for (int i = 0; i < level; i++) cout << "  ";
+            cout << (temp->isFile ? "File: " : "Dir: ") << temp->name << endl;
+            listHelper(temp, level + 1);
+        }
+    }
+
+    // Helper function to delete a node
+    bool deleteHelper(DirNode* parent, const string& name) {
+        if (!parent || !parent->child) return false;
+        DirNode* temp = parent->child;
+        DirNode* prev = nullptr;
+
+        while (temp && temp->name != name) {
+            prev = temp;
+            temp = temp->sibling;
+        }
+
+        if (!temp) return false; // not found
+
+        // Remove node from list
+        if (!prev) parent->child = temp->sibling;
+        else prev->sibling = temp->sibling;
+
+        // Free memory recursively
+        freeNode(temp);
+        return true;
+    }
+
+    // Free memory of node and its children
+    void freeNode(DirNode* node) {
+        if (!node) return;
+        freeNode(node->child);
+        freeNode(node->sibling);
+        delete node;
+    }
+
+public:
+    // Constructor
+    DirectoryTree() {
+        root = new DirNode("/", false);
+    }
+
+    // Destructor
+    ~DirectoryTree() {
+        freeNode(root);
+    }
+
+    // Create a folder
+    void createFolder(const string& path) {
+        if (findNode(path, true, false))
+            cout << "Folder created at " << path << endl;
+    }
+
+    // Create a file
+    void createFile(const string& path) {
+        if (findNode(path, true, true))
+            cout << "File created at " << path << endl;
+    }
+
+    // List contents of a path
+    void list(const string& path) {
+        DirNode* node = findNode(path);
+        if (!node) {
+            cout << "Path not found!\n";
+            return;
+        }
+        listHelper(node);
+    }
+
+    // Delete folder/file
+    void deleteNode(const string& path) {
+        if (path == "/") {
+            cout << "Cannot delete root!\n";
+            return;
+        }
+
+        string parts[100];
+        int n;
+        splitPath(path, parts, n);
+
+        // Find parent node
+        string parentPath = "/";
+        for (int i = 0; i < n - 1; i++) {
+            parentPath += parts[i];
+            if (i != n - 2) parentPath += "/";
+        }
+
+        DirNode* parent = findNode(parentPath);
+        if (!parent) {
+            cout << "Parent path not found!\n";
+            return;
+        }
+
+        if (deleteHelper(parent, parts[n - 1]))
+            cout << "Deleted node: " << parts[n - 1] << endl;
+        else
+            cout << "Node not found!\n";
+    }
+};
+
+int main() {
+    DirectoryTree dt;
+    int choice;
+    do {
+        cout << "\n--- Directory Menu ---\n";
+        cout << "1. Create Folder\n";
+        cout << "2. Create File\n";
+        cout << "3. List Directory\n";
+        cout << "4. Delete Node\n";
+        cout << "5. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+        cin.ignore();
+
+        if (choice == 1) {
+            string path;
+            cout << "Enter folder path: ";
+            getline(cin, path);
+            dt.createFolder(path);
+        } else if (choice == 2) {
+            string path;
+            cout << "Enter file path: ";
+            getline(cin, path);
+            dt.createFile(path);
+        } else if (choice == 3) {
+            string path;
+            cout << "Enter path to list: ";
+            getline(cin, path);
+            dt.list(path);
+        } else if (choice == 4) {
+            string path;
+            cout << "Enter path to delete: ";
+            getline(cin, path);
+            dt.deleteNode(path);
+        } else if (choice != 5) {
+            cout << "Invalid choice!\n";
+        }
+
+    } while (choice != 5);
+
+    return 0;
+}
+```
+```
+Output
+--- Directory Menu ---
+1. Create Folder
+2. Create File
+3. List Directory
+4. Delete Node
+5. Exit
+Enter your choice: 1
+Enter folder path: downloads/mfc
+Folder created at downloads/mfc
+
+--- Directory Menu ---
+1. Create Folder
+2. Create File
+3. List Directory
+4. Delete Node
+5. Exit
+Enter your choice: 2
+Enter file path: mfc/download
+File created at mfc/download
+
+--- Directory Menu ---
+1. Create Folder
+2. Create File
+3. List Directory
+4. Delete Node
+5. Exit
+Enter your choice: 3
+Enter path to list: cpp/download
+Path not found!
+
+--- Directory Menu ---
+1. Create Folder
+2. Create File
+3. List Directory
+4. Delete Node
+5. Exit
+Enter your choice: 4
+Enter path to delete: download/mfc
+Parent path not found!
+
+--- Directory Menu ---
+1. Create Folder
+2. Create File
+3. List Directory
+4. Delete Node
+5. Exit
+Enter your choice: 5
+```
+
+
 
 
 
