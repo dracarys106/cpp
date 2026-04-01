@@ -3345,6 +3345,519 @@ Parent path not found!
 5. Exit
 Enter your choice: 5
 ```
+## Q52.
+```cpp
+#include <iostream>
+using namespace std;
+
+class Student {
+private:
+    int roll_number;
+    string name;
+    int n;           // number of subjects (user-defined)
+    float *marks;    // dynamic array
+
+public:
+    // Constructor
+    Student() {
+        roll_number = 0;
+        name = "";
+        n = 0;
+        marks = NULL;
+    }
+
+    // Destructor (important for dynamic memory)
+    ~Student() {
+        delete[] marks;
+    }
+
+    // Add student (ALL INPUT FROM USER)
+    void addStudent() {
+        cout << "\nEnter Roll Number: ";
+        cin >> roll_number;
+
+        cout << "Enter Name: ";
+        cin >> name;
+
+        cout << "Enter number of subjects: ";
+        cin >> n;
+
+        marks = new float[n];   // dynamic allocation
+
+        cout << "Enter marks:\n";
+        for(int i = 0; i < n; i++) {
+            cin >> marks[i];
+        }
+    }
+
+    // Modify student
+    void modifyStudent(int r) {
+        if(roll_number == r) {
+            cout << "\nRecord Found! Enter New Details:\n";
+
+            cout << "Enter New Name: ";
+            cin >> name;
+
+            cout << "Enter number of subjects: ";
+            cin >> n;
+
+            delete[] marks;           // free old memory
+            marks = new float[n];    // new allocation
+
+            cout << "Enter New Marks:\n";
+            for(int i = 0; i < n; i++) {
+                cin >> marks[i];
+            }
+        }
+    }
+
+    // Display student
+    void displayStudent() {
+        cout << "\nRoll Number: " << roll_number;
+        cout << "\nName: " << name;
+        cout << "\nMarks: ";
+        for(int i = 0; i < n; i++) {
+            cout << marks[i] << " ";
+        }
+        cout << "\nAverage: " << calculateAverage() << endl;
+    }
+
+    // Calculate average
+    float calculateAverage() {
+        float sum = 0;
+        for(int i = 0; i < n; i++) {
+            sum += marks[i];
+        }
+        return (n > 0) ? sum / n : 0;
+    }
+
+    // Check roll number
+    bool checkRoll(int r) {
+        return roll_number == r;
+    }
+};
+
+int main() {
+    int size;
+
+    // USER decides number of students
+    cout << "Enter number of students: ";
+    cin >> size;
+
+    Student *s = new Student[size];   // dynamic array of objects
+
+    int choice, count = 0, roll;
+
+    do {
+        cout << "\n\n===== STUDENT RECORD SYSTEM =====\n";
+        cout << "1. Add Student\n";
+        cout << "2. Modify Student\n";
+        cout << "3. Display All Students\n";
+        cout << "4. Search Student\n";
+        cout << "5. Exit\n";
+        cout << "Enter Choice: ";
+        cin >> choice;
+
+        switch(choice) {
+
+        case 1:
+            if(count < size) {
+                s[count].addStudent();
+                count++;
+            } else {
+                cout << "Student limit reached!\n";
+            }
+            break;
+
+        case 2:
+            cout << "Enter Roll Number to Modify: ";
+            cin >> roll;
+
+            for(int i = 0; i < count; i++) {
+                s[i].modifyStudent(roll);
+            }
+            break;
+
+        case 3:
+            for(int i = 0; i < count; i++) {
+                s[i].displayStudent();
+            }
+            break;
+
+        case 4:
+            cout << "Enter Roll Number to Search: ";
+            cin >> roll;
+
+            for(int i = 0; i < count; i++) {
+                if(s[i].checkRoll(roll)) {
+                    s[i].displayStudent();
+                }
+            }
+            break;
+
+        case 5:
+            cout << "Exiting...\n";
+            break;
+
+        default:
+            cout << "Invalid choice!\n";
+        }
+
+    } while(choice != 5);
+
+    delete[] s;  // free memory
+
+    return 0;
+}
+```
+```
+OUTPUT
+Enter number of students: 3
+
+
+===== STUDENT RECORD SYSTEM =====
+1. Add Student
+2. Modify Student
+3. Display All Students
+4. Search Student
+5. Exit
+Enter Choice: 1
+
+Enter Roll Number: 1
+Enter Name: rohan
+Enter number of subjects: 2
+Enter marks:
+45
+40
+
+
+===== STUDENT RECORD SYSTEM =====
+1. Add Student
+2. Modify Student
+3. Display All Students
+4. Search Student
+5. Exit
+Enter Choice: 1
+
+Enter Roll Number: 2
+Enter Name: roshni
+Enter number of subjects: 2
+Enter marks:
+49
+47
+
+
+===== STUDENT RECORD SYSTEM =====
+1. Add Student
+2. Modify Student
+3. Display All Students
+4. Search Student
+5. Exit
+Enter Choice: 1
+
+Enter Roll Number: 3
+Enter Name: mohan
+Enter number of subjects: 2
+Enter marks:
+50
+46
+
+
+===== STUDENT RECORD SYSTEM =====
+1. Add Student
+2. Modify Student
+3. Display All Students
+4. Search Student
+5. Exit
+Enter Choice: 3
+
+Roll Number: 1
+Name: rohan
+Marks: 45 40 
+Average: 42.5
+
+Roll Number: 2
+Name: roshni
+Marks: 49 47 
+Average: 48
+
+Roll Number: 3
+Name: mohan
+Marks: 50 46 
+Average: 48
+
+
+===== STUDENT RECORD SYSTEM =====
+1. Add Student
+2. Modify Student
+3. Display All Students
+4. Search Student
+5. Exit
+Enter Choice: 5
+Exiting...
+```
+## Q53.
+```cpp
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+class Employee {
+private:
+    int employee_id;
+    string name;
+    float basic_salary;
+    float final_salary;
+
+public:
+    // Function to input employee data (used when reading from file)
+    void setData(int id, string n, float salary) {
+        employee_id = id;
+        name = n;
+        basic_salary = salary;
+    }
+
+    // Function to calculate salary
+    void calculateSalary() {
+        // Example business logic:
+        // Bonus = 10% of basic salary
+        // Deduction = 5% of basic salary
+        float bonus = 0.10 * basic_salary;
+        float deduction = 0.05 * basic_salary;
+
+        final_salary = basic_salary + bonus - deduction;
+    }
+
+    // Function to display employee data
+    void display() {
+        cout << "\nID: " << employee_id;
+        cout << "\nName: " << name;
+        cout << "\nBasic Salary: " << basic_salary;
+        cout << "\nFinal Salary: " << final_salary << endl;
+    }
+
+    // Function to write updated data to file
+    void writeToFile(ofstream &outFile) {
+        outFile << employee_id << " "
+                << name << " "
+                << basic_salary << " "
+                << final_salary << endl;
+    }
+};
+
+int main() {
+    ifstream inFile;
+    ofstream outFile;
+
+    // Open input file (read mode)
+    inFile.open("employees.txt");
+
+    // Exception handling: check if file exists
+    if (!inFile) {
+        cout << "Error: File not found or cannot be opened!\n";
+        return 1;
+    }
+
+    // Open output file (write mode)
+    outFile.open("updated_employees.txt");
+
+    Employee emp;
+
+    int id;
+    string name;
+    float salary;
+
+    cout << "Reading data from file...\n";
+
+    // Read until end of file
+    while (inFile >> id >> name >> salary) {
+
+        // Set data into object
+        emp.setData(id, name, salary);
+
+        // Calculate salary
+        emp.calculateSalary();
+
+        // Display on screen
+        emp.display();
+
+        // Write updated data to new file
+        emp.writeToFile(outFile);
+    }
+
+    // Close files
+    inFile.close();
+    outFile.close();
+
+    cout << "\nUpdated data written to 'updated_employees.txt'\n";
+
+    return 0;
+}
+```
+```
+INPUT FILE(employees.txt)
+101 Aman 20000
+102 Ravi 25000
+103 Neha 30000
+
+Reading data from file...
+
+ID: 101
+Name: Aman
+Basic Salary: 20000
+Final Salary: 21000
+
+ID: 102
+Name: Ravi
+Basic Salary: 25000
+Final Salary: 26250
+
+ID: 103
+Name: Neha
+Basic Salary: 30000
+Final Salary: 31500
+
+Updated data written to 'updated_employees.txt'
+
+OUTPUT FILE(updated_employees.txt)
+101 Aman 20000 21000
+102 Ravi 25000 26250
+103 Neha 30000 31500
+```
+## Q53.
+```cpp
+#include <iostream>
+using namespace std;
+
+class Game {
+private:
+    char board[3][3];
+    char turn;
+    char winner;
+
+public:
+    Game() {
+        resetGame();
+    }
+
+    void resetGame() {
+        char ch = '1';
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                board[i][j] = ch++;  // show positions 1–9
+            }
+        }
+        turn = 'X';
+        winner = ' ';
+    }
+
+    void printBoard() {
+        cout << "\n";
+        for(int i = 0; i < 3; i++) {
+            cout << " ";
+            for(int j = 0; j < 3; j++) {
+                cout << board[i][j];
+                if(j < 2) cout << " | ";
+            }
+            cout << "\n";
+            if(i < 2) cout << "---|---|---\n";
+        }
+    }
+
+    // Convert position (1-9) to row & col
+    bool makeMove(int pos) {
+        int row = (pos - 1) / 3;
+        int col = (pos - 1) % 3;
+
+        // Check valid
+        if(pos < 1 ⠟⠟⠟⠺⠵⠺⠟⠵⠺ board[row][col] == 'X' || board[row][col] == 'O') {
+            cout << "Invalid Move! Try again.\n";
+            return false;
+        }
+
+        board[row][col] = turn;
+
+        // Switch turn
+        if(turn == 'X')
+            turn = 'O';
+        else
+            turn = 'X';
+
+        return true;
+    }
+
+    void checkWinner() {
+        // Rows & Columns
+        for(int i = 0; i < 3; i++) {
+            if(board[i][0] == board[i][1] && board[i][1] == board[i][2])
+                winner = board[i][0];
+
+            if(board[0][i] == board[1][i] && board[1][i] == board[2][i])
+                winner = board[0][i];
+        }
+
+        // Diagonals
+        if(board[0][0] == board[1][1] && board[1][1] == board[2][2])
+            winner = board[0][0];
+
+        if(board[0][2] == board[1][1] && board[1][1] == board[2][0])
+            winner = board[0][2];
+    }
+
+    bool isDraw() {
+        if(winner != ' ') return false;
+
+        for(int i = 0; i < 3; i++)
+            for(int j = 0; j < 3; j++)
+                if(board[i][j] != 'X' && board[i][j] != 'O')
+                    return false;
+
+        return true;
+    }
+
+    char getWinner() {
+        return winner;
+    }
+
+    char getTurn() {
+        return turn;
+    }
+};
+
+int main() {
+    Game g;
+    int pos;
+
+    cout << "===== TIC TAC TOE =====\n";
+    cout << "Choose positions (1-9)\n";
+
+    while(true) {
+        g.printBoard();
+
+        cout << "\nPlayer " << g.getTurn() << ", enter position: ";
+        cin >> pos;
+
+        if(!g.makeMove(pos))
+            continue;
+
+        g.checkWinner();
+
+        if(g.getWinner() == 'X' || g.getWinner() == 'O') {
+            g.printBoard();
+            cout << "\nPlayer " << g.getWinner() << " wins!\n";
+            break;
+        }
+
+        if(g.isDraw()) {
+            g.printBoard();
+            cout << "\nGame is Draw!\n";
+            break;
+        }
+    }
+
+    return 0;
+}
+```
 
 
 
